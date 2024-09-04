@@ -1,3 +1,24 @@
+HOW TO SETUP:
+1. Setup your environment atleast should have the following:
+- node
+- composer
+- XAMPP
+- Postman for API testing
+2. Run `git clone https://github.com/popoy1921/Bookstore` to clone the repository by running the command
+3. Run `php artisan key:generate` to create applicatio key for the application
+4. Run 'composer install' to install laravel dependencies.
+5. Run 'npm install' to install node dependencies.
+6. Access PHPAdmin and create a database "my_book_store"
+6. Rename '.env.example' to '.env', then add the following values:
+```
+DB_DATABASE=my_book_store
+```
+7. In a terminal run 'php artisan serve'.
+8. Access the application through the Postman by accessing 'http://127.0.0.1:8000/'
+
+Enjoy traversing the application :D
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

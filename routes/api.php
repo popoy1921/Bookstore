@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\BooksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    // admin only routes
+    Route::prefix('books')->middleware('checkrole:admin')->group(function () {
+        Route::post('/storeBook', [BooksController::class, 'storeBook']);
+        Route::put('/updateBook/{iBookId}', [BooksController::class, 'updateBook']);
+        Route::delete('/destroyBook/{iBookId}', [BooksController::class, 'destroyBook']);
+    });
+
+    // user and admin routes
+    Route::prefix('books')->middleware('checkrole:admin,user')->group(function () {
+        Route::get('/getAllBooks', [BooksController::class, 'getAllBooks']);
+        Route::get('/getBook/{iBookId}', [BooksController::class, 'getBook']);
+    });
+});
+
+Route::prefix('auth')->group(function() {
+    Route::post('/registerUser', [AuthController::class, 'registerUser']);
+    Route::post('/loginUser', [AuthController::class, 'loginUser']);
+    Route::post('/logoutUser', [AuthController::class, 'logoutUser'])->middleware('auth:sanctum');
+    Route::get('/getUser', [AuthController::class, 'getUser']);
 });
