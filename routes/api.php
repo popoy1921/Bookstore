@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\BooksController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
